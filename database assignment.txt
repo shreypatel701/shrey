@@ -1,0 +1,168 @@
+1) What do you understand By Database
+Ans. A database is an organized collection of structured information, or data, typically
+stored electronically in a computer system. A database is usually controlled by a
+database management system (DBMS).
+2) What is Normalization?
+Ans. Database normalization or database normalisation is the process of structuring a
+relational database in accordance with a series of so-called normal forms in order to
+reduce data redundancy and improve data integrity.
+
+3) What is Difference between DBMS and RDBMS?
+Ans. The main difference between a DBMS and an RDBMS is that a DBMS is a software
+application used to store, retrieve, and manage data in a database, while an RDBMS is a
+type of DBMS that stores data in a relational database.
+
+4) What is MF Cod Rule of RDBMS Systems?
+Ans.Codd's rule in DBMS also known as Codd's 12 rules/commandments is a set of thirteen
+rules (numbered 0 to 12) that define a database to be a correct Relational Database
+Management System (RDBMS). If a database follows Codd's 12 rules, it is called a True
+relational database management system
+
+5) What do you understand By Data Redundancy?
+Ans. Data redundancy refers to the practice of keeping data in two or more places within a
+database or data storage system. Data redundancy ensures an organization can provide
+continued operations or services in the event something happens to its data -- for
+example, in the case of data corruption or data loss.
+
+6) What is DDL Interpreter?
+Ans.DDL Interpreter DDL expands to Data Definition Language. DDL Interpreter as the name
+suggests interprets the DDL statements such as schema definition statements like
+create, delete, etc. The result of this interpretation is a set of a table that contains the
+meta-data which is stored in the data dictionary.
+
+7) What is DML Compiler in SQL?
+Ans. DML Compiler DML expands to Data Manipulation Language in DBMS. DML Compiler
+again as the name suggests compiles(or translates) the DML statements such as select,
+update and delete statements into low-level instructions which is nothing but the
+machine-readable object code to make it executable.
+
+8) What is SQL Key Constraints writing an Example of SQL Key Constraints
+Ans.NOT NULL values cannot be null.
+UNIQUE values cannot match any older value.
+PRIMARY KEY used to uniquely identify a row.
+FOREIGN KEY references a row in another table.
+CHECK validates condition for new value.
+DEFAULT set default value if not passed.
+CREATE INDEX used to speedup the read process.
+
+10) What is trigger and how to create a Trigger in SQL?
+Ans.A trigger is a stored procedure in a database that automatically invokes whenever a
+special event in the database occurs. For example, a trigger can be invoked when a
+row is inserted into a specified table or when specific table columns are updated in
+simple words a trigger is a collection of SQL statements with particular names that
+are stored in system memory. It belongs to a specific class of stored procedures that
+are automatically invoked in response to database server events. Every trigger has a
+table attached to it.
+A trigger is automatically called whenever a data
+modification event against a table takes place, which is the main distinction between
+a trigger and a procedure.
+
+1. Create Table Name : Student and Exam
+CREATE TABLE Student
+(
+Rollno int PRIMARY KEY,
+Name varchar(20),
+Branch varchar(20)
+)
+INSERT INTO student(Rollno,Name,Branch) VALUES(1,"Jay","Computer Science");
+INSERT INTO student(Rollno,Name,Branch) VALUES(2,"Suhani","Electronic and Com");
+INSERT INTO student(Rollno,Name,Branch) VALUES(3,"Kriti","Electronic and Com");
+
+CREATE TABLE Exam
+(
+Rollno int,
+S_code varchar(20),
+Marks int,
+P_code varchar(20),
+FOREIGN KEY(Rollno) REFERENCES student(Rollno)
+)
+INSERT INTO exam(Rollno,S_code,Marks,P_code) VALUES(1,"CS11",50,"CS");
+INSERT INTO exam(Rollno,S_code,Marks,P_code) VALUES(1,"CS12",60,"CS");
+INSERT INTO exam(Rollno,S_code,Marks,P_code) VALUES(2,"EC101",66,"EC");
+INSERT INTO exam(Rollno,S_code,Marks,P_code) VALUES(2,"EC102",70,"EC");
+INSERT INTO exam(Rollno,S_code,Marks,P_code) VALUES(3,"EC101",45,"EC");
+INSERT INTO exam(Rollno,S_code,Marks,P_code) VALUES(3,"EC102",50,"EC");
+3) Get First_Name from employee table using Tom name “Employee Name”.
+
+SELECT * FROM employee WHERE First_name="Tom"
+
+4) Get FIRST_NAME, Joining Date, and Salary from employee table.
+
+SELECT First_name, Joining_date, Salary FROM employee
+
+5) Get all employee details from the employee table order by First_Name Ascending and Salary
+descending?
+
+SELECT * FROM employee ORDER BY First_name ASC
+SELECT * FROM employee ORDER BY Salary DESC
+
+6) Get employee details from employee table whose first name contains ‘J’.
+
+SELECT * FROM employee WHERE First_name LIKE 'J%'
+
+7) Get department wise maximum salary from employee table order by salary ascending?
+
+SELECT * FROM employee ORDER BY Salary ASC
+SELECT MAX(Salary), Department FROM employee WHERE Department="Banking"
+SELECT MAX(Salary), Department FROM employee WHERE Department="Insurance"
+SELECT MAX(Salary), Department FROM employee WHERE Department="Services"
+
+9) Select first_name, incentive amount from employee and incentives table forthose employees who have incentives and incentive amount greater than 3000
+
+SELECT employee.First_name, incentive.Incentive_amount FROM employee
+INNER JOIN incentive ON employee.Employee_id=incentive.Employee_ref_id
+
+SELECT * FROM incentive WHERE Incentive_amount>3000
+14) Names and cities of all salespeople in London with commission above 0.12
+
+SELECT SANAME,CITY FROM salesperson WHERE CITY='London' AND COMM > 0.12;
+15) All salespeople either in Barcelona or in London
+
+SELECT SNAME FROM salesperson WHERE CITY="London" OR "Barcelona"
+16) All salespeople with commission between 0.10 and 0.12. (Boundary valuesshould be excluded).
+
+SELECT SNAME,COMM FROM salesperson WHERE COMM BETWEEN 0.10 AND 0.12
+
+17) All customers excluding those with rating <= 100 unless they are located in Rome.
+
+SELECT * FROM customers WHERE RATING>100 OR CITY='Rome';
+19) From the following table, write a SQL query to find orders that are delivered by a salesperson with
+ID. 5001. Return ord_no, ord_date, purch_amt.
+
+SELECT ord_no,purch_amt,ord_date FROM orders WHERE salesman_id=5001
+
+----> Create table item_mast
+CREATE TABLE item_mas
+(
+PRO_ID int PRIMARY KEY,
+PRO_NAME varchar(40),
+PRO_PRICE float,
+PRO_COM int
+)
+
+DELIMITER $$
+CREATE PROCEDURE insert_data(i int, j varchar(40), k float, l int)
+BEGIN
+INSERT INTO item_mast(PRO_ID, PRO_NAME, PRO_PRICE, PRO_COM) VALUES(i,j,k,l);
+END
+CALL insert_data(101,"Mother Board",3200.00,15);
+CALL insert_data(102,"Key Board",450.00,16);
+CALL insert_data(103,"Zip Drive",250.00,14);
+CALL insert_data(104,"Speaker",550.00,16);
+CALL insert_data(105,"Monitor",5000.00,11);
+CALL insert_data(106,"DVD drive",900.00,12);
+CALL insert_data(107,"CD drive",800.00,12);
+CALL insert_data(108,"Printer",2600.00,13);
+CALL insert_data(109,"Refill Cartridge",350.00,13);
+CALL insert_data(110,"Mouse",250.00,12);
+20) From the following table, write a SQL query to select a range of products whose price is in the range
+Rs.200 to Rs.600. Begin and end values are included. Return pro_id, pro_name, pro_price, and
+pro_com.
+
+SELECT * FROM item_mast WHERE PRO_PRICE BETWEEN 200 AND 600
+22) From the following table, write a SQL query to display the pro_name as 'Item Name' and
+pro_priceas 'Price in Rs.'
+
+SELECT PRO_NAME AS Item_Name, PRO_PRICE AS Price_in_Rs FROM item_mast
+
+
